@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">FieldGenerator</string>
+    <string name="cloud">Облако</string>
+    <string name="independent_area">Независимая область</string>
+    <string name="dependent_area">Зависимая область</string>
+    <string name="field_type">Тип поля:</string>
+    <string name="wind">Ветер</string>
+    <string name="floatage">Изменённая плавучесть</string>
+    <string name="empty">Штиль</string>
+    <string name="direction">Направление:</string>
+    <string name="danger">Опасность:</string>
+    <string name="ligntning">Молния</string>
+    <string name="zeppelin">Дирижабль</string>
+    <string name="spider">Облачный паук</string>
+    <string name="whale">Летающий кит</string>
+    <string name="glasswings">Стеклокрылы</string>
+    <string name="high_wind">крепчает</string>
+    <string name="low_wind">ослабевает</string>
+    <string name="left">Влево</string>
+    <string name="right">Вправо</string>
+    <string name="same_wind">В том же направлении</string>
+    <string name="settings">Настройки</string>
+    <string name="wind_possibility">Вероятность ветра</string>
+    <string name="floatage_possibility">Вероятность изменённой плавучести</string>
+    <string name="lightning_possibility">Вероятность молнии</string>
+    <string name="enemy_possibility">Вероятность обнаружить врага</string>
+    <string name="usual_field">Обычная область</string>
+    <string name="reset">Значения по умолчанию</string>
+    <string name="save">Сохранить</string>
+</resources>

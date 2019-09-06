@@ -1,0 +1,216 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/cloud"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wind_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_wind_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/floatage_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_floatage_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/darker_gray" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lightning_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_lightning_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enemy_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_enemy_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/darker_gray" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/zeppelin"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_zeppelin_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/whale"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_whale_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glasswings"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_glasswings_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/spider"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/cloud_spider_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/darker_gray" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/usual_field"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wind_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_wind_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/floatage_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_floatage_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/darker_gray" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lightning_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_lightning_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <Button
+                android:id="@+id/reset_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reset" />
+    </LinearLayout>
+</ScrollView>
