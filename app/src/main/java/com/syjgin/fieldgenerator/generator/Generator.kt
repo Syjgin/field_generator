@@ -15,6 +15,7 @@ object Generator {
         var resultFloatage = FloatageEnum.Nothing
         val resultDanger: DangerEnum
         var resultEnemy = EnemyEnum.Nothing
+        var resultVelocity = 0
         val cloudType = mutableListOf<Pair<Int, FieldEnum>>()
         cloudType.add(Pair(config.cloudType.floatagePossibility,
             FieldEnum.Floatage
@@ -31,6 +32,7 @@ object Generator {
         when(resultCloudType) {
             FieldEnum.Wind -> {
                 resultWind = generateWind()
+                resultVelocity = generateWindVelocity()
             }
             FieldEnum.Floatage -> {
                 resultFloatage = generateFloatage()
@@ -72,7 +74,8 @@ object Generator {
             resultWind,
             resultFloatage,
             resultDanger,
-            resultEnemy
+            resultEnemy,
+            resultVelocity
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result
@@ -86,6 +89,7 @@ object Generator {
         fieldType.add(Pair(config.fieldType.windPossibility,
             FieldEnum.Wind
         ))
+        var resultVelocity = 0
         val resultType =
             selectVariantByPossibilities(fieldType)
         var resultWind = WindEnum.Nothing
@@ -93,6 +97,7 @@ object Generator {
         when(resultType) {
             FieldEnum.Wind -> {
                 resultWind = generateWind()
+                resultVelocity = generateWindVelocity()
             }
             FieldEnum.Floatage -> {
                 resultFloatage = generateFloatage()
@@ -114,7 +119,8 @@ object Generator {
             resultWind,
             resultFloatage,
             resultDanger,
-            EnemyEnum.Nothing
+            EnemyEnum.Nothing,
+            resultVelocity
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result
@@ -191,6 +197,14 @@ object Generator {
                 winds.add(Pair(1, it))
         }
         return selectVariantByPossibilities(winds)
+    }
+
+    private fun generateWindVelocity() : Int {
+        val velocities = mutableListOf<Pair<Int,Int>>()
+        velocities.add(Pair(1,1))
+        velocities.add(Pair(1,2))
+        velocities.add(Pair(1,3))
+        return selectVariantByPossibilities(velocities)
     }
 
     private fun <T>selectVariantByPossibilities(possibilities : List<Pair<Int, T>>) : T {

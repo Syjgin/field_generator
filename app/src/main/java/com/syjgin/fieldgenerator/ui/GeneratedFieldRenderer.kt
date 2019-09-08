@@ -24,6 +24,9 @@ object GeneratedFieldRenderer {
                     WindEnum.BottomLeft -> R.drawable.ic_bottom_left
                     WindEnum.Nothing -> null
                 }
+                builder.append("\n")
+                builder.append(context.getString(R.string.velocity))
+                builder.append(field.windVelocity)
             }
             FieldEnum.Floatage -> {
                 builder.append(context.getString(R.string.floatage))

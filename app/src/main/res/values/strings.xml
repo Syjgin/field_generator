@@ -9,6 +9,7 @@
     <string name="empty">Штиль</string>
     <string name="direction">Направление:</string>
     <string name="danger">Опасность:</string>
+    <string name="velocity">Скорость:</string>
     <string name="ligntning">Молния</string>
     <string name="zeppelin">Дирижабль</string>
     <string name="spider">Облачный паук</string>

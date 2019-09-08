@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import com.syjgin.fieldgenerator.R
@@ -31,6 +32,7 @@ class SettingsActivity : BaseActivity() {
         normalizeSeekbars(cloud_glasswings_possibility, listOf(cloud_whale_possibility, cloud_spider_possibility, cloud_zeppelin_possibility))
         normalizeSeekbars(nocloud_wind_possibility, listOf(nocloud_floatage_possibility))
         normalizeSeekbars(nocloud_floatage_possibility, listOf(nocloud_wind_possibility))
+        normalizeSeekbars(nocloud_lightning_possibility, emptyList())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -85,8 +87,14 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun setDataForSeekbar(seekBar: SeekBar) {
-        seekBar.progress =
-            ConfigStorage.getConfigValue(getConfigKey(seekBar)!!, prefs)
+        val progress = ConfigStorage.getConfigValue(getConfigKey(seekBar)!!, prefs)
+        seekBar.progress = progress
+        updateSeekbarDescription(seekBar, progress)
+    }
+
+    private fun updateSeekbarDescription(seekBar: SeekBar, progress: Int) {
+        getDependentField(seekBar)?.text =
+            String.format("%s: %d", getString(getDependentDescription(seekBar)!!), progress)
     }
 
     private fun getConfigKey(seekBar: SeekBar) : ConfigStorage.ConfigKey? {
@@ -106,6 +114,40 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
+    private fun getDependentField(seekBar: SeekBar) : TextView? {
+        return when(seekBar) {
+            cloud_wind_possibility -> cloud_wind_caption
+            cloud_floatage_possibility -> cloud_floatage_caption
+            cloud_lightning_possibility -> cloud_lighting_caption
+            cloud_enemy_possibility -> cloud_enemy_caption
+            cloud_zeppelin_possibility -> cloud_enemy_zeppelin_caption
+            cloud_whale_possibility -> cloud_enemy_whale_caption
+            cloud_spider_possibility -> cloud_enemy_spider_caption
+            cloud_glasswings_possibility -> cloud_enemy_glasswings_caption
+            nocloud_wind_possibility -> nocloud_wind_caption
+            nocloud_floatage_possibility -> nocloud_floatage_caption
+            nocloud_lightning_possibility -> nocloud_lighting_caption
+            else -> null
+        }
+    }
+
+    private fun getDependentDescription(seekBar: SeekBar) : Int? {
+        return when(seekBar) {
+            cloud_wind_possibility -> R.string.wind_possibility
+            cloud_floatage_possibility -> R.string.floatage_possibility
+            cloud_lightning_possibility -> R.string.lightning_possibility
+            cloud_enemy_possibility -> R.string.enemy_possibility
+            cloud_zeppelin_possibility -> R.string.zeppelin
+            cloud_whale_possibility -> R.string.whale
+            cloud_spider_possibility -> R.string.spider
+            cloud_glasswings_possibility -> R.string.glasswings
+            nocloud_wind_possibility -> R.string.wind_possibility
+            nocloud_floatage_possibility -> R.string.floatage_possibility
+            nocloud_lightning_possibility -> R.string.lightning_possibility
+            else -> null
+        }
+    }
+
     private fun normalizeSeekbars(currentSeekbar: SeekBar, otherSeekbars: List<SeekBar>) {
         currentSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -118,8 +160,10 @@ class SettingsActivity : BaseActivity() {
                         val decrement = (summ - Generator.PERCENT)/otherSeekbars.size
                         for(otherSeekbar in otherSeekbars) {
                             otherSeekbar.progress -= decrement
+                            updateSeekbarDescription(otherSeekbar, otherSeekbar.progress)
                         }
                     }
+                    updateSeekbarDescription(currentSeekbar, progress)
                 }
             }
 

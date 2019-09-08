@@ -5,5 +5,6 @@ data class GeneratedField(
     val windType: WindEnum,
     val floatageType: FloatageEnum,
     val dangerType: DangerEnum,
-    val enemyType: EnemyEnum
+    val enemyType: EnemyEnum,
+    val windVelocity: Int
 )
