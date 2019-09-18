@@ -15,6 +15,7 @@ object Generator {
         var resultFloatage = FloatageEnum.Nothing
         val resultDanger: DangerEnum
         var resultEnemy = EnemyEnum.Nothing
+        var resultZeppelin = ZeppelinEnum.Nothing
         var resultVelocity = 0
         val cloudType = mutableListOf<Pair<Int, FieldEnum>>()
         cloudType.add(Pair(config.cloudType.floatagePossibility,
@@ -68,6 +69,9 @@ object Generator {
             ))
             resultEnemy =
                 selectVariantByPossibilities(enemyType)
+            if(resultEnemy == EnemyEnum.Zeppelin) {
+                resultZeppelin = generateZeppelin()
+            }
         }
         val result = GeneratedField(
             resultCloudType,
@@ -75,7 +79,9 @@ object Generator {
             resultFloatage,
             resultDanger,
             resultEnemy,
-            resultVelocity
+            resultVelocity,
+            generateWeapon(),
+            resultZeppelin
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result
@@ -120,7 +126,9 @@ object Generator {
             resultFloatage,
             resultDanger,
             EnemyEnum.Nothing,
-            resultVelocity
+            resultVelocity,
+            WeaponEnum.Nothing,
+            ZeppelinEnum.Nothing
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result
@@ -184,27 +192,27 @@ object Generator {
     }
 
     private fun generateFloatage() : FloatageEnum {
-        val floatage = mutableListOf<Pair<Int, FloatageEnum>>()
-        floatage.add(Pair(1, FloatageEnum.Negative))
-        floatage.add(Pair(1, FloatageEnum.Positive))
-        return selectVariantByPossibilities(floatage)
+        val floatage = listOf(FloatageEnum.Negative, FloatageEnum.Positive)
+        return selectVariantByEqualPossibilities(floatage)
     }
 
     private fun generateWind() : WindEnum {
-        val winds = mutableListOf<Pair<Int, WindEnum>>()
-        WindEnum.values().forEach {
-            if(it != WindEnum.Nothing)
-                winds.add(Pair(1, it))
-        }
-        return selectVariantByPossibilities(winds)
+        val winds = listOf(WindEnum.Bottom, WindEnum.BottomLeft, WindEnum.BottomRight, WindEnum.TopRight, WindEnum.Top, WindEnum.TopLeft)
+        return selectVariantByEqualPossibilities(winds)
+    }
+
+    private fun generateZeppelin() : ZeppelinEnum {
+        val zeppelins = listOf(ZeppelinEnum.Pirate, ZeppelinEnum.Trader, ZeppelinEnum.Whalebot)
+        return selectVariantByEqualPossibilities(zeppelins)
     }
 
     private fun generateWindVelocity() : Int {
-        val velocities = mutableListOf<Pair<Int,Int>>()
-        velocities.add(Pair(1,1))
-        velocities.add(Pair(1,2))
-        velocities.add(Pair(1,3))
-        return selectVariantByPossibilities(velocities)
+        val list = listOf(1,2,3)
+        return selectVariantByEqualPossibilities(list)
+    }
+
+    private fun generateWeapon() : WeaponEnum {
+        return selectVariantByEqualPossibilities(listOf(WeaponEnum.Left, WeaponEnum.Right, WeaponEnum.Under, WeaponEnum.Upper))
     }
 
     private fun <T>selectVariantByPossibilities(possibilities : List<Pair<Int, T>>) : T {
@@ -212,6 +220,11 @@ object Generator {
             createPossibilitiesArray(possibilities)
         val variant = random.nextInt(possibilityValues.size)
         return possibilityValues[variant]
+    }
+
+    private fun <T>selectVariantByEqualPossibilities(possibilities : List<T>) : T {
+        val variant = random.nextInt(possibilities.size)
+        return possibilities[variant]
     }
 
     fun <T>createPossibilitiesArray(possibilities: List<Pair<Int,T>>): ArrayList<T> {

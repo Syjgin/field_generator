@@ -28,4 +28,14 @@
     <string name="usual_field">Обычная область</string>
     <string name="reset">Значения по умолчанию</string>
     <string name="save">Сохранить</string>
+    <string name="weapon">Орудие:</string>
+    <string name="under">снизу</string>
+    <string name="upper">cверху</string>
+    <string name="left_weapon">слева</string>
+    <string name="right_weapon">справа</string>
+    <string name="none">отсутствует</string>
+    <string name="zeppelin_type">Тип дирижабля:</string>
+    <string name="pirate">Пират</string>
+    <string name="whalebot">Китобой</string>
+    <string name="trader">Торговец</string>
 </resources>

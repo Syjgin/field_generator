@@ -58,6 +58,25 @@ object GeneratedFieldRenderer {
                         EnemyEnum.Nothing -> R.string.empty
                     }
                 ))
+                if(field.enemyType == EnemyEnum.Zeppelin) {
+                    builder.append("\n")
+                    builder.append(context.getString(R.string.weapon))
+                    builder.append(context.getString(when(field.weaponType) {
+                        WeaponEnum.Under -> R.string.under
+                        WeaponEnum.Upper -> R.string.upper
+                        WeaponEnum.Left -> R.string.left_weapon
+                        WeaponEnum.Right -> R.string.right_weapon
+                        WeaponEnum.Nothing -> R.string.none
+                    }))
+                    builder.append("\n")
+                    builder.append(context.getString(R.string.zeppelin_type))
+                    builder.append(context.getString(when(field.zeppelinType) {
+                        ZeppelinEnum.Trader -> R.string.trader
+                        ZeppelinEnum.Whalebot -> R.string.whalebot
+                        ZeppelinEnum.Pirate -> R.string.pirate
+                        ZeppelinEnum.Nothing -> R.string.none
+                    }))
+                }
             }
             DangerEnum.Nothing -> {}
         }
