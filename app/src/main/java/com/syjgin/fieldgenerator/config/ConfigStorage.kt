@@ -11,7 +11,8 @@ object ConfigStorage {
     enum class MiddleKey {
         FieldType,
         Danger,
-        Enemy
+        Enemy,
+        Wind
     }
 
     enum class LowKey {
@@ -22,7 +23,11 @@ object ConfigStorage {
         Zeppelin,
         Whale,
         Spider,
-        GlassWings
+        GlassWings,
+        TailWind,
+        TailSideWind,
+        HeadWind,
+        HeadSideWind
     }
 
     data class ConfigKey(val highKey: HighKey, val middleKey: MiddleKey, val lowKey: LowKey) {
@@ -58,13 +63,15 @@ object ConfigStorage {
                 HighKey.Cloud,
                 MiddleKey.Danger,
                 LowKey.Lightning
-            ), 33),
+            ), 40
+        ),
         Pair(
             ConfigKey(
                 HighKey.Cloud,
                 MiddleKey.Danger,
                 LowKey.Enemy
-            ), 33),
+            ), 40
+        ),
 
         Pair(
             ConfigKey(
@@ -108,7 +115,36 @@ object ConfigStorage {
                 HighKey.NoCloud,
                 MiddleKey.Danger,
                 LowKey.Lightning
-            ), 17)
+            ), 17
+        ),
+        Pair(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.TailWind
+            ), 50
+        ),
+        Pair(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.HeadWind
+            ), 8
+        ),
+        Pair(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.TailSideWind
+            ), 30
+        ),
+        Pair(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.HeadSideWind
+            ), 12
+        )
     ) }
 
     fun reset(prefs: SharedPreferences) {
@@ -212,6 +248,67 @@ object ConfigStorage {
         return FieldConfig(fieldType, lighningPossibility)
     }
 
+    fun getDependentFieldConfig(prefs: SharedPreferences): DependentFieldConfig {
+        val windPossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.FieldType,
+                LowKey.Wind
+            ), prefs
+        )
+        val floatagePossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.FieldType,
+                LowKey.Floatage
+            ), prefs
+        )
+        val fieldType =
+            FieldTypeConfig(windPossibility, floatagePossibility)
+        val lighningPossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Danger,
+                LowKey.Lightning
+            ), prefs
+        )
+        val headWindPossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.HeadWind
+            ), prefs
+        )
+        val headSideWindPossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.HeadSideWind
+            ), prefs
+        )
+        val tailWindPossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.TailWind
+            ), prefs
+        )
+        val tailSideWindPossibility = getConfigValue(
+            ConfigKey(
+                HighKey.NoCloud,
+                MiddleKey.Wind,
+                LowKey.TailSideWind
+            ), prefs
+        )
+        val windConfig = WindConfig(
+            headWindPossibility,
+            tailWindPossibility,
+            headSideWindPossibility,
+            tailSideWindPossibility
+        )
+        return DependentFieldConfig(fieldType, lighningPossibility, windConfig)
+    }
+
     fun getConfigValue(key: ConfigKey, prefs: SharedPreferences) : Int {
         val stringKey = key.toString()
         return if(!prefs.contains(stringKey)) {
@@ -221,7 +318,7 @@ object ConfigStorage {
         } else prefs.getInt(stringKey, 0)
     }
 
-    public fun setConfigValue(key: ConfigKey, prefs: SharedPreferences, value: Int) {
+    fun setConfigValue(key: ConfigKey, prefs: SharedPreferences, value: Int) {
         prefs.edit().putInt(key.toString(), value).apply()
     }
 }

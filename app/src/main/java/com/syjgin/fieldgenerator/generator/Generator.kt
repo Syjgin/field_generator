@@ -2,6 +2,7 @@ package com.syjgin.fieldgenerator.generator
 
 import android.util.Log
 import com.syjgin.fieldgenerator.config.CloudConfig
+import com.syjgin.fieldgenerator.config.DependentFieldConfig
 import com.syjgin.fieldgenerator.config.FieldConfig
 import kotlin.random.Random
 
@@ -134,7 +135,7 @@ object Generator {
         return result
     }
 
-    fun generateDependentField(config: FieldConfig) : GeneratedDependentField {
+    fun generateDependentField(config: DependentFieldConfig): GeneratedDependentField {
         val fieldType = mutableListOf<Pair<Int, FieldEnum>>()
         fieldType.add(Pair(config.fieldType.floatagePossibility,
             FieldEnum.Floatage
@@ -145,25 +146,38 @@ object Generator {
         val resultType =
             selectVariantByPossibilities(fieldType)
         var resultFloatage = FloatageEnum.Nothing
-        var resultDirection = WindDirectionEnum.Same
-        var resultWindHigher = false
+        var resultVelocity = 0
+        var resultWind = WindEnum.Nothing
         when(resultType) {
             FieldEnum.Wind -> {
-                val direction = mutableListOf<Pair<Int, WindDirectionEnum>>()
-                direction.add(Pair(1, WindDirectionEnum.Same))
-                direction.add(Pair(1, WindDirectionEnum.Left))
-                direction.add(Pair(1, WindDirectionEnum.Right))
-                resultDirection =
+                resultVelocity = generateWindVelocity()
+                val direction = mutableListOf<Pair<Int, WindEnum>>()
+                direction.add(Pair(config.windConfig.tailWindPossibility, WindEnum.Top))
+                direction.add(Pair(config.windConfig.tailSideWindPossibility / 2, WindEnum.TopLeft))
+                direction.add(
+                    Pair(
+                        config.windConfig.tailSideWindPossibility / 2,
+                        WindEnum.TopRight
+                    )
+                )
+                direction.add(Pair(config.windConfig.headWindPossibility, WindEnum.Bottom))
+                direction.add(
+                    Pair(
+                        config.windConfig.headSideWindPossibility / 2,
+                        WindEnum.BottomRight
+                    )
+                )
+                direction.add(
+                    Pair(
+                        config.windConfig.headSideWindPossibility / 2,
+                        WindEnum.BottomLeft
+                    )
+                )
+                resultWind =
                     selectVariantByPossibilities(
                         direction
                     )
-                val higher = mutableListOf<Pair<Int, Boolean>>()
-                higher.add(Pair(1, true))
-                higher.add(Pair(1, false))
-                resultWindHigher =
-                    selectVariantByPossibilities(
-                        higher
-                    )
+
             }
             FieldEnum.Floatage -> {
                 resultFloatage = generateFloatage()
@@ -184,8 +198,8 @@ object Generator {
             resultType,
             resultFloatage,
             resultDanger == DangerEnum.Lightning,
-            resultDirection,
-            resultWindHigher
+            resultWind,
+            resultVelocity
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result

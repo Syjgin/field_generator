@@ -2,10 +2,7 @@ package com.syjgin.fieldgenerator.ui
 
 import android.content.Context
 import com.syjgin.fieldgenerator.R
-import com.syjgin.fieldgenerator.generator.WindDirectionEnum
-import com.syjgin.fieldgenerator.generator.WindEnum
 import com.syjgin.fieldgenerator.generator.*
-import java.lang.StringBuilder
 
 object GeneratedFieldRenderer {
     fun renderField(field: GeneratedField, context: Context) : Pair<String, Int?> {
@@ -91,20 +88,17 @@ object GeneratedFieldRenderer {
             FieldEnum.Wind -> {
                 builder.append(context.getString(R.string.wind))
                 builder.append(" ")
-                builder.append(context.getString(
-                    if(field.isHigher) {
-                        R.string.high_wind
-                    } else {
-                        R.string.low_wind
-                    }
-                ))
-                builder.append("\n")
-                builder.append(context.getString(R.string.direction))
-                builder.append(context.getString(when(field.direction) {
-                    WindDirectionEnum.Left -> R.string.left
-                    WindDirectionEnum.Right -> R.string.right
-                    WindDirectionEnum.Same -> R.string.same_wind
-                }))
+                builder.append(context.getString(R.string.velocity))
+                builder.append(field.windVelocity)
+                resultIcon = when (field.direction) {
+                    WindEnum.Top -> R.drawable.ic_top
+                    WindEnum.TopRight -> R.drawable.ic_top_right
+                    WindEnum.TopLeft -> R.drawable.ic_top_left
+                    WindEnum.Bottom -> R.drawable.ic_bottom
+                    WindEnum.BottomRight -> R.drawable.ic_bottom_right
+                    WindEnum.BottomLeft -> R.drawable.ic_bottom_left
+                    WindEnum.Nothing -> null
+                }
             }
             FieldEnum.Floatage -> {
                 builder.append(context.getString(R.string.floatage))

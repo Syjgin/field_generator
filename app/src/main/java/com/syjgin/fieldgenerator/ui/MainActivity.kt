@@ -1,15 +1,13 @@
 package com.syjgin.fieldgenerator.ui
 
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import com.syjgin.fieldgenerator.R
 import com.syjgin.fieldgenerator.config.ConfigStorage
 import com.syjgin.fieldgenerator.generator.Generator
-import com.syjgin.fieldgenerator.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -41,7 +39,7 @@ class MainActivity : BaseActivity() {
             val renderedField =
                 GeneratedFieldRenderer.renderDependentField(
                     Generator.generateDependentField(
-                        ConfigStorage.getFieldConfig(
+                        ConfigStorage.getDependentFieldConfig(
                             prefs
                         )
                     ), this

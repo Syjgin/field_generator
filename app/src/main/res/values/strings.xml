@@ -7,7 +7,6 @@
     <string name="wind">Ветер</string>
     <string name="floatage">Изменённая плавучесть</string>
     <string name="empty">Штиль</string>
-    <string name="direction">Направление:</string>
     <string name="danger">Опасность:</string>
     <string name="velocity">Скорость:</string>
     <string name="ligntning">Молния</string>
@@ -15,11 +14,6 @@
     <string name="spider">Облачный паук</string>
     <string name="whale">Летающий кит</string>
     <string name="glasswings">Стеклокрылы</string>
-    <string name="high_wind">крепчает</string>
-    <string name="low_wind">ослабевает</string>
-    <string name="left">Влево</string>
-    <string name="right">Вправо</string>
-    <string name="same_wind">В том же направлении</string>
     <string name="settings">Настройки</string>
     <string name="wind_possibility">Вероятность ветра</string>
     <string name="floatage_possibility">Вероятность изменённой плавучести</string>
@@ -38,4 +32,8 @@
     <string name="pirate">Пират</string>
     <string name="whalebot">Китобой</string>
     <string name="trader">Торговец</string>
+    <string name="tail_wind_possibility">Вероятность господствующего ветра</string>
+    <string name="tail_side_wind_possibility">Вероятность господствующе-бокового ветра</string>
+    <string name="head_wind_possibility">Вероятность встречного ветра</string>
+    <string name="head_side_wind_possibility">Вероятность встречно-бокового ветра</string>
 </resources>

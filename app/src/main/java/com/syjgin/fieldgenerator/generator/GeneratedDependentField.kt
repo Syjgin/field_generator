@@ -4,5 +4,6 @@ data class GeneratedDependentField(
     val fieldType: FieldEnum,
     val floatageType: FloatageEnum,
     val isLightning: Boolean,
-    val direction: WindDirectionEnum,
-    val isHigher: Boolean)
+    val direction: WindEnum,
+    val windVelocity: Int
+)

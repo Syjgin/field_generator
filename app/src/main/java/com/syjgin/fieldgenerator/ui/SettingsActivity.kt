@@ -1,13 +1,10 @@
 package com.syjgin.fieldgenerator.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceFragmentCompat
 import com.syjgin.fieldgenerator.R
 import com.syjgin.fieldgenerator.config.ConfigStorage
 import com.syjgin.fieldgenerator.generator.Generator
@@ -33,6 +30,38 @@ class SettingsActivity : BaseActivity() {
         normalizeSeekbars(nocloud_wind_possibility, listOf(nocloud_floatage_possibility))
         normalizeSeekbars(nocloud_floatage_possibility, listOf(nocloud_wind_possibility))
         normalizeSeekbars(nocloud_lightning_possibility, emptyList())
+        normalizeSeekbars(
+            nocloud_tail_wind_possibility,
+            listOf(
+                nocloud_tail_side_wind_possibility,
+                nocloud_head_side_wind_possibility,
+                nocloud_head_wind_possibility
+            )
+        )
+        normalizeSeekbars(
+            nocloud_head_wind_possibility,
+            listOf(
+                nocloud_tail_side_wind_possibility,
+                nocloud_head_side_wind_possibility,
+                nocloud_tail_wind_possibility
+            )
+        )
+        normalizeSeekbars(
+            nocloud_tail_side_wind_possibility,
+            listOf(
+                nocloud_tail_wind_possibility,
+                nocloud_head_side_wind_possibility,
+                nocloud_head_wind_possibility
+            )
+        )
+        normalizeSeekbars(
+            nocloud_head_side_wind_possibility,
+            listOf(
+                nocloud_tail_side_wind_possibility,
+                nocloud_tail_wind_possibility,
+                nocloud_head_wind_possibility
+            )
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -80,7 +109,11 @@ class SettingsActivity : BaseActivity() {
             cloud_glasswings_possibility,
             nocloud_wind_possibility,
             nocloud_floatage_possibility,
-            nocloud_lightning_possibility
+            nocloud_lightning_possibility,
+            nocloud_head_wind_possibility,
+            nocloud_head_side_wind_possibility,
+            nocloud_tail_wind_possibility,
+            nocloud_tail_side_wind_possibility
         )) {
             action(i)
         }
@@ -110,6 +143,26 @@ class SettingsActivity : BaseActivity() {
             nocloud_wind_possibility -> ConfigStorage.ConfigKey(ConfigStorage.HighKey.NoCloud, ConfigStorage.MiddleKey.FieldType, ConfigStorage.LowKey.Wind)
             nocloud_floatage_possibility -> ConfigStorage.ConfigKey(ConfigStorage.HighKey.NoCloud, ConfigStorage.MiddleKey.FieldType, ConfigStorage.LowKey.Floatage)
             nocloud_lightning_possibility -> ConfigStorage.ConfigKey(ConfigStorage.HighKey.NoCloud, ConfigStorage.MiddleKey.Danger, ConfigStorage.LowKey.Lightning)
+            nocloud_tail_wind_possibility -> ConfigStorage.ConfigKey(
+                ConfigStorage.HighKey.NoCloud,
+                ConfigStorage.MiddleKey.Wind,
+                ConfigStorage.LowKey.TailWind
+            )
+            nocloud_tail_side_wind_possibility -> ConfigStorage.ConfigKey(
+                ConfigStorage.HighKey.NoCloud,
+                ConfigStorage.MiddleKey.Wind,
+                ConfigStorage.LowKey.TailSideWind
+            )
+            nocloud_head_wind_possibility -> ConfigStorage.ConfigKey(
+                ConfigStorage.HighKey.NoCloud,
+                ConfigStorage.MiddleKey.Wind,
+                ConfigStorage.LowKey.HeadWind
+            )
+            nocloud_head_side_wind_possibility -> ConfigStorage.ConfigKey(
+                ConfigStorage.HighKey.NoCloud,
+                ConfigStorage.MiddleKey.Wind,
+                ConfigStorage.LowKey.HeadSideWind
+            )
             else -> null
         }
     }
@@ -127,6 +180,10 @@ class SettingsActivity : BaseActivity() {
             nocloud_wind_possibility -> nocloud_wind_caption
             nocloud_floatage_possibility -> nocloud_floatage_caption
             nocloud_lightning_possibility -> nocloud_lighting_caption
+            nocloud_tail_wind_possibility -> nocloud_tail_wind_caption
+            nocloud_tail_side_wind_possibility -> nocloud_tail_side_wind_caption
+            nocloud_head_wind_possibility -> nocloud_head_wind_caption
+            nocloud_head_side_wind_possibility -> nocloud_head_side_wind_caption
             else -> null
         }
     }
@@ -144,6 +201,10 @@ class SettingsActivity : BaseActivity() {
             nocloud_wind_possibility -> R.string.wind_possibility
             nocloud_floatage_possibility -> R.string.floatage_possibility
             nocloud_lightning_possibility -> R.string.lightning_possibility
+            nocloud_tail_wind_possibility -> R.string.tail_wind_possibility
+            nocloud_tail_side_wind_possibility -> R.string.tail_side_wind_possibility
+            nocloud_head_wind_possibility -> R.string.head_wind_possibility
+            nocloud_head_side_wind_possibility -> R.string.head_side_wind_possibility
             else -> null
         }
     }

@@ -206,6 +206,81 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/dependent_area"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+        <TextView
+                android:id="@+id/nocloud_tail_wind_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tail_wind_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_tail_wind_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:id="@+id/nocloud_tail_side_wind_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tail_side_wind_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_tail_side_wind_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:id="@+id/nocloud_head_wind_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/head_wind_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_head_wind_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+
+        <TextView
+                android:id="@+id/nocloud_head_side_wind_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/head_side_wind_possibility"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+        <SeekBar
+                android:id="@+id/nocloud_head_side_wind_possibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:max="100" />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/darker_gray" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/lightning_possibility"
                 android:textColor="@android:color/black"
                 android:id="@+id/nocloud_lighting_caption"
