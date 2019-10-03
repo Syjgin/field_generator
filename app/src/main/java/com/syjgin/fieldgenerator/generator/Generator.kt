@@ -18,6 +18,7 @@ object Generator {
         var resultEnemy = EnemyEnum.Nothing
         var resultZeppelin = ZeppelinEnum.Nothing
         var resultVelocity = 0
+        var resultFaction = FactionEnum.Nothing
         val cloudType = mutableListOf<Pair<Int, FieldEnum>>()
         cloudType.add(Pair(config.cloudType.floatagePossibility,
             FieldEnum.Floatage
@@ -72,6 +73,7 @@ object Generator {
                 selectVariantByPossibilities(enemyType)
             if(resultEnemy == EnemyEnum.Zeppelin) {
                 resultZeppelin = generateZeppelin()
+                resultFaction = generateFaction()
             }
         }
         val result = GeneratedField(
@@ -82,7 +84,8 @@ object Generator {
             resultEnemy,
             resultVelocity,
             generateWeapon(),
-            resultZeppelin
+            resultZeppelin,
+            resultFaction
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result
@@ -129,7 +132,8 @@ object Generator {
             EnemyEnum.Nothing,
             resultVelocity,
             WeaponEnum.Nothing,
-            ZeppelinEnum.Nothing
+            ZeppelinEnum.Nothing,
+            FactionEnum.Nothing
         )
         Log.d(javaClass.canonicalName, result.toString())
         return result
@@ -218,6 +222,18 @@ object Generator {
     private fun generateZeppelin() : ZeppelinEnum {
         val zeppelins = listOf(ZeppelinEnum.Pirate, ZeppelinEnum.Trader, ZeppelinEnum.Whalebot)
         return selectVariantByEqualPossibilities(zeppelins)
+    }
+
+    private fun generateFaction(): FactionEnum {
+        val factions = listOf(
+            FactionEnum.Communia,
+            FactionEnum.HimlishReich,
+            FactionEnum.LaTour,
+            FactionEnum.Maru,
+            FactionEnum.Novopetrograd,
+            FactionEnum.NorthPlatforms
+        )
+        return selectVariantByEqualPossibilities(factions)
     }
 
     private fun generateWindVelocity() : Int {

@@ -36,4 +36,11 @@
     <string name="tail_side_wind_possibility">Вероятность господствующе-бокового ветра</string>
     <string name="head_wind_possibility">Вероятность встречного ветра</string>
     <string name="head_side_wind_possibility">Вероятность встречно-бокового ветра</string>
+    <string name="latour">Ля Тур</string>
+    <string name="communia">Коммуния</string>
+    <string name="novopetrograd">Новопетроград</string>
+    <string name="himlishreich">Химлишрайх</string>
+    <string name="northplatforms">Северо-полушарные соединённые платформы</string>
+    <string name="maru">Мару</string>
+    <string name="faction">Фракция:</string>
 </resources>

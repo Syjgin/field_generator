@@ -8,5 +8,6 @@ data class GeneratedField(
     val enemyType: EnemyEnum,
     val windVelocity: Int,
     val weaponType: WeaponEnum,
-    val zeppelinType: ZeppelinEnum
+    val zeppelinType: ZeppelinEnum,
+    val factionEnum: FactionEnum
 )

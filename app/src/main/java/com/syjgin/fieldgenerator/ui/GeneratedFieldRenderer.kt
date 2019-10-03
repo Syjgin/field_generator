@@ -73,6 +73,22 @@ object GeneratedFieldRenderer {
                         ZeppelinEnum.Pirate -> R.string.pirate
                         ZeppelinEnum.Nothing -> R.string.none
                     }))
+                    builder.append("\n")
+                    builder.append(context.getString(R.string.faction))
+                    builder.append("\n")
+                    builder.append(
+                        context.getString(
+                            when (field.factionEnum) {
+                                FactionEnum.LaTour -> R.string.latour
+                                FactionEnum.Communia -> R.string.communia
+                                FactionEnum.Novopetrograd -> R.string.novopetrograd
+                                FactionEnum.HimlishReich -> R.string.himlishreich
+                                FactionEnum.NorthPlatforms -> R.string.northplatforms
+                                FactionEnum.Maru -> R.string.maru
+                                FactionEnum.Nothing -> R.string.none
+                            }
+                        )
+                    )
                 }
             }
             DangerEnum.Nothing -> {}
